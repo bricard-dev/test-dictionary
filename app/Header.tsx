@@ -1,13 +1,20 @@
-import { BookmarkIcon } from '@radix-ui/react-icons';
+import { Container, Flex, Heading } from '@radix-ui/themes';
+import { BookText } from 'lucide-react';
 import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="py-4 border-b bg-gray-100 flex justify-center">
-      <Link href="/" className="flex items-center">
-        <BookmarkIcon />
-        Dictionary
-      </Link>
+    <header className="border-b bg-gray-100 flex justify-center">
+      <Container size="2">
+        <Flex p="4" justify="between">
+          <Link href="/">
+            <Flex align="center" gapX="2">
+              <BookText />
+              <Heading size="3">Dictionary</Heading>
+            </Flex>
+          </Link>
+        </Flex>
+      </Container>
     </header>
   );
 };
