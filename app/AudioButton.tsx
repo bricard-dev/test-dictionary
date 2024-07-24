@@ -1,6 +1,6 @@
 'use client';
 
-import { PlayIcon } from '@radix-ui/react-icons';
+import { SpeakerLoudIcon } from '@radix-ui/react-icons';
 import { IconButton } from '@radix-ui/themes';
 
 const AudioButton = ({ audioUrl }: { audioUrl: string }) => {
@@ -15,12 +15,12 @@ const AudioButton = ({ audioUrl }: { audioUrl: string }) => {
 
   return (
     <IconButton
-      size="3"
+      variant="ghost"
       radius="full"
       style={{ cursor: 'pointer' }}
       onClick={() => playAudio(audioUrl)}
     >
-      <PlayIcon height="18" width="18" />
+      <SpeakerLoudIcon />
     </IconButton>
   );
 };

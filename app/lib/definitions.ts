@@ -19,4 +19,9 @@ export type WordDefinitionType = {
     synonyms?: string[];
     antonyms?: string[];
   }[];
+  license?: {
+    name?: string;
+    url?: string;
+  };
+  sourceUrls?: string[];
 };

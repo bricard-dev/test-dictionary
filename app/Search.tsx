@@ -54,16 +54,22 @@ const Search = () => {
   };
 
   return (
-    <Box className="mb-5">
+    <Box
+      mb={{
+        initial: '5',
+      }}
+    >
       <TextField.Root
         id="search"
         type="search"
         placeholder="Search..."
         value={searchValue}
         onChange={handleSearch}
+        radius="full"
+        size="3"
       >
         <TextField.Slot>
-          <MagnifyingGlassIcon height="16" width="16" />
+          <MagnifyingGlassIcon height="20" width="20" />
         </TextField.Slot>
 
         <TextField.Slot
@@ -72,7 +78,7 @@ const Search = () => {
           })}
         >
           <button onClick={clearSearch}>
-            <CrossCircledIcon height="16" width="16" />
+            <CrossCircledIcon height="20" width="20" />
           </button>
         </TextField.Slot>
       </TextField.Root>
