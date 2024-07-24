@@ -1,4 +1,4 @@
-import { Container, Theme } from '@radix-ui/themes';
+import { Container, Flex, Theme } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 import { inter } from './fonts';
 import Footer from './Footer';
@@ -20,11 +20,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.variable}>
         <Theme>
-          <Header />
-          <Container role="main" size="2" minHeight="100vh">
-            {children}
-          </Container>
-          <Footer />
+          <Flex direction="column" minHeight="100vh">
+            <Header />
+            <Container role="main" size="2" flexGrow="1">
+              {children}
+            </Container>
+            <Footer />
+          </Flex>
         </Theme>
       </body>
     </html>

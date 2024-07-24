@@ -32,9 +32,6 @@ const WordDefinition = async ({ query }: Props) => {
     (phonetic) => phonetic.audio && phonetic.text
   );
 
-  const hasLicense = license?.name && license?.url;
-  const hasSourceUrls = !!sourceUrls?.length;
-
   return (
     <Box className="space-y-6">
       {/* Word & Phonetic */}
@@ -95,13 +92,13 @@ const WordDefinition = async ({ query }: Props) => {
                       Definition
                     </Heading>
                     {/* Body */}
-                    <ul className="space-y-4">
+                    <ul className="list-inside list-decimal space-y-4">
                       {meaning.definitions?.map(
                         ({ definition, example }, index) =>
                           definition && (
                             <li key={index} className="space-y-1">
-                              <Text as="p">
-                                {index + 1}. {definition}
+                              <Text as="p" className="inline">
+                                {definition}
                               </Text>
 
                               {example && (
@@ -160,39 +157,69 @@ const WordDefinition = async ({ query }: Props) => {
 
       {/* License and Source */}
       <Box className="space-y-6">
-        {/* License */}
-        {hasLicense && (
-          <Box className="space-y-3">
-            <Heading as="h3" size="4">
-              License
-            </Heading>
-
-            <Link href={license.url} target="_blank" className="inline-block">
-              {license.name}
-            </Link>
-          </Box>
-        )}
-
-        {/* Source */}
-        {hasSourceUrls && (
-          <Box className="space-y-3">
-            <Heading as="h3" size="4">
-              Sources
-            </Heading>
-
-            <ul className="list-inside list-disc">
-              {sourceUrls.map((sourceUrl, index) => (
-                <li key={`${sourceUrl}-${index}`}>
-                  <Link href={sourceUrl} target="_blank">
-                    {sourceUrl}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </Box>
-        )}
+        <License license={license} />
+        <Sources sourceUrls={sourceUrls} />
       </Box>
     </Box>
+  );
+};
+
+const Phonetic = () => {
+  // TODO: Implement this component
+};
+
+const License = ({
+  license,
+}: {
+  license?: { url?: string; name?: string };
+}) => {
+  if (!license) return;
+
+  return (
+    <Flex direction="column" gapY="3">
+      <Heading as="h3" size="1" className="uppercase">
+        License
+      </Heading>
+      <Link
+        size="2"
+        color="gray"
+        underline="always"
+        highContrast
+        href={license.url}
+        target="_blank"
+      >
+        {license.name}
+      </Link>
+    </Flex>
+  );
+};
+
+const Sources = ({ sourceUrls }: { sourceUrls?: string[] }) => {
+  if (!sourceUrls) return;
+
+  return (
+    <Flex direction="column" gapY="3">
+      <Heading as="h3" size="1" className="uppercase">
+        Sources
+      </Heading>
+
+      <ul className="list-inside list-disc">
+        {sourceUrls.map((sourceUrl, index) => (
+          <li key={`${sourceUrl}-${index}`}>
+            <Link
+              size="2"
+              color="gray"
+              underline="always"
+              highContrast
+              href={sourceUrl}
+              target="_blank"
+            >
+              {sourceUrl}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </Flex>
   );
 };
 
